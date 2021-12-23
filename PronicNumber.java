@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+// https://github.com/alexsmith716/Pronic-Or-Not
 // A pronic number (or otherwise called as heteromecic) is a number which is a product of two consecutive integers, that is, a number of the form n(n + 1). Create a function that determines whether a number is pronic or not. 
 // a pronic number is a number which is the product of two consecutive integers
 // 0, 2, 6, 12, 20, 30, 42, 56, 72, 90 ...
@@ -14,30 +15,27 @@ import java.util.Scanner;
 public class PronicNumber {
 
 	public static boolean testIfPronic(int number) {
-		System.out.println("Test If " + number + " Pronic");
 		int getInputSquareRoot = (int)Math.sqrt(number);
-		System.out.println("getInputSquareRoot " + getInputSquareRoot);
-		// square root: a value that multiplied by itself gives the "number"
-		// that square root + 1;
 		int eval = getInputSquareRoot * (getInputSquareRoot + 1);
-		if (eval == number) {
-			return true;
-		} else {
-			return false;
-		}
+		return eval == number;
 	}
 
 	public static void main(String[] args) {
 		Scanner scanner =  new Scanner(System.in);
-		int number = 0;
-		System.out.print("Enter Integer To Test If Pronic: ");
-		number = scanner.nextInt();
-
-		if(testIfPronic(number)) {
-			System.out.println("IS " + number + " Pronic?: " + " >> YES");
-		} else {
-			System.out.println("IS " + number + " Pronic?: " + " >> NO");
+		int number;
+		while(true) {
+			try {
+				System.out.print("Enter Integer To Test If Pronic: ");
+				number = scanner.nextInt();
+				if(testIfPronic(number)) {
+					System.out.println("IS " + number + " Pronic?: " + " >> YES");
+				} else {
+					System.out.println("IS " + number + " Pronic?: " + " >> NO");
+				}
+			} catch(java.util.InputMismatchException e) {
+				System.out.println("Invalid input! That was not an Integer.");
+				scanner.nextLine();
+			}
 		}
-		scanner.close();
 	}
 }
